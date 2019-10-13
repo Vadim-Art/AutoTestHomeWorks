@@ -8,6 +8,13 @@
     <artifactId>test</artifactId>
     <version>1.0-SNAPSHOT</version>
 
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <browser.name>chrome</browser.name>
+        <chrome.driver.path>/lib/drivers/chrome/chromedriver</chrome.driver.path>
+    </properties>
+
     <repositories>
 
         <repository>
