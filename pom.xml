@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <browser.name>chrome</browser.name>
         <chrome.driver.path>lib/drivers/chrome/chromedriver.exe</chrome.driver.path>
+        <gitHub.login.page.url>https://github.com/login </gitHub.login.page.url>
     </properties>
 
     <repositories>
@@ -45,7 +46,12 @@
                     <systemPropertyVariables>
                         <chrome.driver.path>${chrome.driver.path}</chrome.driver.path>
                         <browser.name>${browser.name}</browser.name>
+                        <gitHub.login.page.url>${gitHub.login.page.url}</gitHub.login.page.url>
                     </systemPropertyVariables>
+                    <suiteXmlFiles>
+                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                    </suiteXmlFiles>
+
                 </configuration>
             </plugin>
 
