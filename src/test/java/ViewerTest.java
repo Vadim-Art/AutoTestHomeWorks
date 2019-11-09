@@ -1,13 +1,6 @@
-import blogPage.BlogPage;
-import blogPage.LoginPageForTest;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import util.PropertyLoader;
-
-import java.time.Duration;
 
 public class ViewerTest extends TestBase {
 
@@ -38,7 +31,7 @@ public class ViewerTest extends TestBase {
     @Test
     public void userLoginWitPageObject(){
         driver.get("https://github.com/login");
-        loginPageForTest.userLogin();
+        loginPage.userLogin();
         gitHubPage.selectDropDown();
 
         Assert.assertTrue(driver.getCurrentUrl().contains(expectedUrl));
@@ -49,7 +42,7 @@ public class ViewerTest extends TestBase {
     public void userLoginTest() {
 
         driver.get(url);
-        loginPageForTest.userLogin();
+        loginPage.userLogin();
         gitHubPage.selectBlogLink();
 
         Assert.assertEquals(driver.getCurrentUrl(),expectedUrl1);
@@ -59,7 +52,7 @@ public class ViewerTest extends TestBase {
     @Test
     public void usersRepositoryCountFileTest() {
         driver.get(url);
-        loginPageForTest.userLogin();
+        loginPage.userLogin();
         gitHubPage.selectUsersRepository();
 
         Assert.assertEquals(driver.getCurrentUrl(),expectedUrlForRepository);
@@ -68,7 +61,7 @@ public class ViewerTest extends TestBase {
     @Test
     public void usersRepositoryCountFoldersAndFilesTest() {
         driver.get(url);
-        loginPageForTest.userLogin();
+        loginPage.userLogin();
         gitHubPage.selectUsersRepository();
 
         Assert.assertEquals(driver.getCurrentUrl(),expectedUrlForRepository);

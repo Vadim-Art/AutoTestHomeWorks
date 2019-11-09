@@ -1,4 +1,4 @@
-package blogPage;
+package gitHubPages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,17 +6,14 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import util.PropertyLoader;
 
-import java.util.Properties;
-
-public class LoginPageForTest {
+public class LoginPage {
     private String userName = System.getProperty("user.name");
     private String password = System.getProperty("user.password");
 
     private WebDriverWait wait;
 
-    public LoginPageForTest(WebDriver driver, WebDriverWait wait) {
+    public LoginPage(WebDriver driver, WebDriverWait wait) {
         PageFactory.initElements(driver,this);
         this.wait = wait;
     }
