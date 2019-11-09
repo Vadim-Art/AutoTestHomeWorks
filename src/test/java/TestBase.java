@@ -1,11 +1,14 @@
 import blogPage.BlogPage;
 import blogPage.GitHubPage;
 import blogPage.LoginPageForTest;
+import blogPage.UsersRepositoriesPage;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeDriverService;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
@@ -16,9 +19,11 @@ public class TestBase {
     LoginPageForTest loginPageForTest;
     GitHubPage gitHubPage;
     BlogPage blogPage;
+    UsersRepositoriesPage usersRepositoriesPage;
     WebDriverWait wait;
 
-    @BeforeSuite
+
+    @BeforeMethod
     public void before() {
         File chromeDriver = new File(System.getProperty("chrome.driver.path"));
         ChromeDriverService service = new ChromeDriverService.Builder()
@@ -33,9 +38,10 @@ public class TestBase {
         loginPageForTest = new LoginPageForTest(driver, wait);
         gitHubPage = new GitHubPage(driver, wait);
         blogPage = new BlogPage(driver, wait);
+        usersRepositoriesPage = new UsersRepositoriesPage(driver, wait);
     }
 
-    @AfterSuite
+    @AfterMethod
     public void tearDown() {
         driver.quit();
     }

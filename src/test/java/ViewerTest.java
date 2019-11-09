@@ -13,12 +13,17 @@ public class ViewerTest extends TestBase {
 
     private WebDriverWait wait;
 
-    //private String expectedName = "testautotest";
-    //private String expectedUrl = "https://github.com";
+    private String expectedName = "testautotest";
+    private String expectedUrl = "https://github.com";
 
-    private String expectedName = "The GitHub Blog";
-    private String expectedUrl = "https://github.blog/";
+    private String expectedName1 = "The GitHub Blog";
+    private String expectedUrl1 = "https://github.blog/";
     private String url = System.getProperty("gitHub.login.page.url");
+    private int expectedElementsNumber = 4;
+    private int expectedFolderNumber = 1;
+    private int expectedFilesNumber = 3;
+    private String expectedUrlForRepository = "https://github.com/testautotest/TestRepository";
+
     //private String expectedName = "testautotest";
     //private String expectedUrl = "https://github.com";
 
@@ -31,38 +36,44 @@ public class ViewerTest extends TestBase {
     //private By loginForm = By.xpath("//div[@class = 'auth-form-body mt-3']");//By.cssSelector(".auth-form .auth-form-body");
 
     @Test
-    public void userLogin() {
-       // driver.get("https://github.com/login");
-        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(loginForm));
-       // driver.findElement(usernameInput).sendKeys("testautotest12345@gmail.com");
-      //  driver.findElement(passwordInput).sendKeys("qwerty12345auto");
-      //  driver.findElement(signinButton).click();
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(dropdown));
-       // driver.findElement(dropdown).click();
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(visibleDropdown));
+    public void userLoginWitPageObject(){
+        driver.get("https://github.com/login");
+        loginPageForTest.userLogin();
+        gitHubPage.selectDropDown();
 
-        //Assert.assertTrue(driver.getCurrentUrl().contains(expectedUrl));
+        Assert.assertTrue(driver.getCurrentUrl().contains(expectedUrl));
+        Assert.assertEquals(gitHubPage.getUserNameFromDropDown(), expectedName);
+    }
+
+    @Test
+    public void userLoginTest() {
+
         driver.get(url);
-        loginPageForTest.userLogin("testautotest12345@gmail.com","qwerty12345auto");
+        loginPageForTest.userLogin();
         gitHubPage.selectBlogLink();
 
-        //loginPage.userLogin("testautotest12345@gmail.com","qwerty12345auto");
-        //githubPage.selectDropDown();
-        Assert.assertEquals(driver.getCurrentUrl(),expectedUrl);
-        Assert.assertEquals(blogPage.getPageName(), expectedName);
-        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-       // wait.until(ExpectedConditions.visibilityOfElementLocated(loginForm));
-       // driver.findElement(usernameInput).sendKeys("testautotest12345@gmail.com");
-       // driver.findElement(passwordInput).sendKeys("qwerty12345auto");
-       // driver.findElement(signInButton).click();
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(dropdown));
-        //driver.findElement(dropdown).click();
-       //wait.until(ExpectedConditions.visibilityOfElementLocated(visibleDropdown));
-        //String actualUsername = driver.findElement(targetName).getText();
-
-        //String actualUsername = driver.findElement(targetName).getText();
-
-        //Assert.assertEquals(actualUsername, expectedName);
+        Assert.assertEquals(driver.getCurrentUrl(),expectedUrl1);
+        Assert.assertEquals(blogPage.getPageName(), expectedName1);
     }
+
+    @Test
+    public void usersRepositoryCountFileTest() {
+        driver.get(url);
+        loginPageForTest.userLogin();
+        gitHubPage.selectUsersRepository();
+
+        Assert.assertEquals(driver.getCurrentUrl(),expectedUrlForRepository);
+        Assert.assertEquals(usersRepositoriesPage.getUserFiles(), expectedElementsNumber);
+    }
+    @Test
+    public void usersRepositoryCountFoldersAndFilesTest() {
+        driver.get(url);
+        loginPageForTest.userLogin();
+        gitHubPage.selectUsersRepository();
+
+        Assert.assertEquals(driver.getCurrentUrl(),expectedUrlForRepository);
+        Assert.assertEquals(usersRepositoriesPage.getUserFolder(), expectedFolderNumber);
+        Assert.assertEquals(usersRepositoriesPage.getUsersFiles(),expectedFilesNumber);
+    }
+
 }

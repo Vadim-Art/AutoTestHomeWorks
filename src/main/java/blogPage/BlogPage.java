@@ -14,14 +14,12 @@ public class BlogPage {
         PageFactory.initElements(driver, this);
         this.wait = wait;
     }
-
     @FindBy(xpath = "//h1")
     private WebElement targetPageName;
 
     public String getPageName() {
         wait.until(ExpectedConditions.visibilityOf(targetPageName));
         return targetPageName.getText();
-
 
     }
 }

@@ -11,9 +11,10 @@ import util.PropertyLoader;
 import java.util.Properties;
 
 public class LoginPageForTest {
+    private String userName = System.getProperty("user.name");
+    private String password = System.getProperty("user.password");
 
     private WebDriverWait wait;
-    //public static String url = System.getProperty("gitHub.login.page.url");
 
     public LoginPageForTest(WebDriver driver, WebDriverWait wait) {
         PageFactory.initElements(driver,this);
@@ -32,11 +33,11 @@ public class LoginPageForTest {
     @FindBy (xpath = "//input [@type = 'submit']")
     private WebElement signInButton;
 
-    public void userLogin(String userName, String password){
+    public void userLogin(){
         wait.until(ExpectedConditions.visibilityOf(loginForm));
         userNameInput.sendKeys(userName);
         passwordInput.sendKeys(password);
         signInButton.click();
-
     }
+
 }

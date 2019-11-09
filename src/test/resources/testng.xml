@@ -3,8 +3,14 @@
 <suite name="Suite">
     <test name="TestBase">
         <classes>
-            <class name="TestBase"/>
-            <class name="ViewerTest"/>
+            <class name="ViewerTest">
+                <methods>
+                    <exclude name = "userLoginWitPageObject/"/>
+                    <exclude name = "userLoginTest"/>
+                    <include name = "usersRepositoryCountFileTest"/>
+                    <include name ="usersRepositoryCountFoldersAndFilesTest"/>
+                </methods>
+            </class>
         </classes>
     </test>
 
