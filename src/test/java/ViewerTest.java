@@ -17,16 +17,6 @@ public class ViewerTest extends TestBase {
     private int expectedFilesNumber = 3;
     private String expectedUrlForRepository = "https://github.com/testautotest/TestRepository";
 
-    //private String expectedName = "testautotest";
-    //private String expectedUrl = "https://github.com";
-
-   // private By usernameInput = By.xpath("//input[@id='login_field']");//By.id("login_field");
-   // private By passwordInput = By.xpath("//input[@id='password']"); //By.id("password");
-    //private By signinButton = By.xpath("//input [@type = 'submit']");//By.cssSelector(".auth-form-body [name='commit']");
-    //private By dropdown = By.xpath("//summary [contains(@aria-label, 'View profile')]"); //By.cssSelector(".details-overlay .Header-link[aria-label*='View profile']");
-   // private By targetName = By.xpath("//strong [contains(., 'test')]");//By.cssSelector(".header-nav-current-user .css-truncate-target");
-    //private By visibleDropdown = By.xpath("//details-menu [contains (@class,'mt-2')]");// By.cssSelector(".details-overlay .dropdown-menu.mt-2");
-    //private By loginForm = By.xpath("//div[@class = 'auth-form-body mt-3']");//By.cssSelector(".auth-form .auth-form-body");
 
     @Test
     public void userLoginWitPageObject(){
