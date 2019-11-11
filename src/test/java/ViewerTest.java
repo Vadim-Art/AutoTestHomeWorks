@@ -17,7 +17,6 @@ public class ViewerTest extends TestBase {
     private int expectedFilesNumber = 3;
     private String expectedUrlForRepository = "https://github.com/testautotest/TestRepository";
 
-
     @Test
     public void userLoginWitPageObject(){
         driver.get("https://github.com/login");
