@@ -68,5 +68,4 @@ public class ViewerTest extends TestBase {
         Assert.assertEquals(usersRepositoriesPage.getUserFolder(), expectedFolderNumber);
         Assert.assertEquals(usersRepositoriesPage.getUsersFiles(),expectedFilesNumber);
     }
-
 }

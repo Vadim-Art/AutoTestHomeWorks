@@ -2,4 +2,4 @@
 /target/
 .idea/
 lib/
-test.iml
+*.iml
