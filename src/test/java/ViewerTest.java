@@ -1,10 +1,7 @@
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ViewerTest extends TestBase {
-
-    private WebDriverWait wait;
 
     private String expectedName = "testautotest";
     private String expectedUrl = "https://github.com";
@@ -15,58 +12,78 @@ public class ViewerTest extends TestBase {
     private int expectedElementsNumber = 4;
     private int expectedFolderNumber = 1;
     private int expectedFilesNumber = 3;
+    private int expectedFilesNumberForNewRepo = 1;
     private String expectedUrlForRepository = "https://github.com/testautotest/TestRepository";
-
-    //private String expectedName = "testautotest";
-    //private String expectedUrl = "https://github.com";
-
-   // private By usernameInput = By.xpath("//input[@id='login_field']");//By.id("login_field");
-   // private By passwordInput = By.xpath("//input[@id='password']"); //By.id("password");
-    //private By signinButton = By.xpath("//input [@type = 'submit']");//By.cssSelector(".auth-form-body [name='commit']");
-    //private By dropdown = By.xpath("//summary [contains(@aria-label, 'View profile')]"); //By.cssSelector(".details-overlay .Header-link[aria-label*='View profile']");
-   // private By targetName = By.xpath("//strong [contains(., 'test')]");//By.cssSelector(".header-nav-current-user .css-truncate-target");
-    //private By visibleDropdown = By.xpath("//details-menu [contains (@class,'mt-2')]");// By.cssSelector(".details-overlay .dropdown-menu.mt-2");
-    //private By loginForm = By.xpath("//div[@class = 'auth-form-body mt-3']");//By.cssSelector(".auth-form .auth-form-body");
+    private String expectedUrlForNewRepo = "https://github.com/testautotest/test-repo4";
+    private String expectedFileName = "README.md";
+    private String expectedFolderName = "src";
+    private String expectedIgnoreName = ".gitignore";
+    private String expectedPomName = "pom.xml";
+    private String expectedUrlForUsersRepo = "https://github.com/Vadim-Art/AutoTestHomeWorks";
 
     @Test
-    public void userLoginWitPageObject(){
+    public void userLoginWitPageObject() {
         driver.get("https://github.com/login");
-        loginPage.userLogin();
-        gitHubPage.selectDropDown();
-
+        app.getUserHelper().LoginAs();
+        app.getUserHelper().getDropdown();
         Assert.assertTrue(driver.getCurrentUrl().contains(expectedUrl));
-        Assert.assertEquals(gitHubPage.getUserNameFromDropDown(), expectedName);
+        Assert.assertEquals(app.getUserHelper().getUserName(), expectedName);
     }
 
     @Test
     public void userLoginTest() {
-
         driver.get(url);
-        loginPage.userLogin();
-        gitHubPage.selectBlogLink();
+        app.getUserHelper().LoginAs();
+        app.getUserHelper().getBlogLink();
 
-        Assert.assertEquals(driver.getCurrentUrl(),expectedUrl1);
-        Assert.assertEquals(blogPage.getPageName(), expectedName1);
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrl1);
+        Assert.assertEquals(app.getUserHelper().getPageTitle(), expectedName1);
     }
 
     @Test
     public void usersRepositoryCountFileTest() {
         driver.get(url);
-        loginPage.userLogin();
-        gitHubPage.selectUsersRepository();
+        app.getUserHelper().LoginAs();
+        app.getUserHelper().getUsersRepository();
 
-        Assert.assertEquals(driver.getCurrentUrl(),expectedUrlForRepository);
-        Assert.assertEquals(usersRepositoriesPage.getUserFiles(), expectedElementsNumber);
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForRepository);
+        Assert.assertEquals(app.getUserHelper().getFiles(), expectedElementsNumber);
     }
+
     @Test
     public void usersRepositoryCountFoldersAndFilesTest() {
         driver.get(url);
-        loginPage.userLogin();
-        gitHubPage.selectUsersRepository();
+        app.getUserHelper().LoginAs();
+        app.getUserHelper().getUsersRepository();
 
-        Assert.assertEquals(driver.getCurrentUrl(),expectedUrlForRepository);
-        Assert.assertEquals(usersRepositoriesPage.getUserFolder(), expectedFolderNumber);
-        Assert.assertEquals(usersRepositoriesPage.getUsersFiles(),expectedFilesNumber);
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForRepository);
+        Assert.assertEquals(app.getUserHelper().getFolder(), expectedFolderNumber);
+        Assert.assertEquals(app.getUserHelper().getFilesFromList(), expectedFilesNumber);
     }
+    @Test
+    public void creatingNewRepositoryTest() {
+        driver.get(url);
+        app.getUserHelper().LoginAs();
+        app.getUserHelper().getDropdownCreate();
+        app.getUserHelper().getDropdownItem();
+        app.getUserHelper().repoCreation();
 
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForNewRepo);
+        Assert.assertEquals(app.getUserHelper().getFiles(), expectedFilesNumberForNewRepo);
+        Assert.assertEquals(app.getUserHelper().getFileTitle(), expectedFileName);
+    }
+    @Test
+    public void searchRepositoryTest() {
+        driver.get(url);
+        app.getUserHelper().LoginAs();
+        app.getUserHelper().search();
+        app.getUserHelper().getFilter();
+        app.getUserHelper().getRepoName();
+
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForUsersRepo);
+        Assert.assertEquals(app.getUserHelper().getFiles(), expectedFilesNumber);
+        Assert.assertEquals(app.getUserHelper().getFolderTitle(), expectedFolderName);
+        Assert.assertEquals(app.getUserHelper().getFileGitIgnore(), expectedIgnoreName);
+        Assert.assertEquals(app.getUserHelper().getFilePom(), expectedPomName);
+    }
 }
