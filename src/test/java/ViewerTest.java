@@ -72,4 +72,18 @@ public class ViewerTest extends TestBase {
         Assert.assertEquals(app.getUserHelper().getFiles(), expectedFilesNumberForNewRepo);
         Assert.assertEquals(app.getUserHelper().getFileTitle(), expectedFileName);
     }
+    @Test
+    public void searchRepositoryTest() {
+        driver.get(url);
+        app.getUserHelper().LoginAs();
+        app.getUserHelper().search();
+        app.getUserHelper().getFilter();
+        app.getUserHelper().getRepoName();
+
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForUsersRepo);
+        Assert.assertEquals(app.getUserHelper().getFiles(), expectedFilesNumber);
+        Assert.assertEquals(app.getUserHelper().getFolderTitle(), expectedFolderName);
+        Assert.assertEquals(app.getUserHelper().getFileGitIgnore(), expectedIgnoreName);
+        Assert.assertEquals(app.getUserHelper().getFilePom(), expectedPomName);
+    }
 }

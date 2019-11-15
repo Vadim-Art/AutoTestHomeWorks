@@ -69,4 +69,30 @@ public class UserHelper extends PageManager {
     public String getFileTitle() {
         return usersRepositoriesPage.getFileName();
     }
+
+    //searchRepository test
+
+    public void search() {
+        gitHubPage.searchItem();
+    }
+
+    public void getFilter() {
+        searchResultPage.selectLanguageFilter();
+    }
+
+    public void getRepoName() {
+        searchResultPage.selectSearchedRepoName();
+    }
+
+    public String getFolderTitle() {
+        return usersRepositoriesPage.getFolderName();
+    }
+
+    public String getFileGitIgnore() {
+        return usersRepositoriesPage.getIgnoreFileName();
+    }
+
+    public String getFilePom() {
+        return usersRepositoriesPage.getPomFileName();
+    }
 }

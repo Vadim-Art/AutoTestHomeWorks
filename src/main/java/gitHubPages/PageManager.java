@@ -9,6 +9,7 @@ public class PageManager {
     protected BlogPage blogPage;
     protected UsersRepositoriesPage usersRepositoriesPage;
     protected CreatingNewRepositoryPage creatingNewRepositoryPage;
+    protected SearchResultPage searchResultPage;
     private WebDriver driver;
 
     public PageManager(WebDriver webDriver) {
@@ -18,6 +19,7 @@ public class PageManager {
         blogPage = initElements(new BlogPage(this));
         usersRepositoriesPage = initElements(new UsersRepositoriesPage(this));
         creatingNewRepositoryPage = initElements(new CreatingNewRepositoryPage(this));
+        searchResultPage = initElements(new SearchResultPage(this));
     }
 
     private <T extends Page> T initElements(T page) {
