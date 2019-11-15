@@ -8,6 +8,7 @@ public class PageManager {
     protected GitHubPage gitHubPage;
     protected BlogPage blogPage;
     protected UsersRepositoriesPage usersRepositoriesPage;
+    protected CreatingNewRepositoryPage creatingNewRepositoryPage;
     private WebDriver driver;
 
     public PageManager(WebDriver webDriver) {
@@ -16,6 +17,7 @@ public class PageManager {
         gitHubPage = initElements(new GitHubPage(this));
         blogPage = initElements(new BlogPage(this));
         usersRepositoriesPage = initElements(new UsersRepositoriesPage(this));
+        creatingNewRepositoryPage = initElements(new CreatingNewRepositoryPage(this));
     }
 
     private <T extends Page> T initElements(T page) {

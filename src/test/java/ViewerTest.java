@@ -14,7 +14,7 @@ public class ViewerTest extends TestBase {
     private int expectedFilesNumber = 3;
     private int expectedFilesNumberForNewRepo = 1;
     private String expectedUrlForRepository = "https://github.com/testautotest/TestRepository";
-    private String expectedUrlForNewRepo = "https://github.com/testautotest/test-repo3";
+    private String expectedUrlForNewRepo = "https://github.com/testautotest/test-repo4";
     private String expectedFileName = "README.md";
     private String expectedFolderName = "src";
     private String expectedIgnoreName = ".gitignore";
@@ -59,5 +59,17 @@ public class ViewerTest extends TestBase {
         Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForRepository);
         Assert.assertEquals(app.getUserHelper().getFolder(), expectedFolderNumber);
         Assert.assertEquals(app.getUserHelper().getFilesFromList(), expectedFilesNumber);
+    }
+    @Test
+    public void creatingNewRepositoryTest() {
+        driver.get(url);
+        app.getUserHelper().LoginAs();
+        app.getUserHelper().getDropdownCreate();
+        app.getUserHelper().getDropdownItem();
+        app.getUserHelper().repoCreation();
+
+        Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForNewRepo);
+        Assert.assertEquals(app.getUserHelper().getFiles(), expectedFilesNumberForNewRepo);
+        Assert.assertEquals(app.getUserHelper().getFileTitle(), expectedFileName);
     }
 }

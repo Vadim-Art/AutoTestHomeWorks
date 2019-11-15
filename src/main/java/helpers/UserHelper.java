@@ -52,4 +52,21 @@ public class UserHelper extends PageManager {
         return usersRepositoriesPage.getUsersFiles();
     }
 
+    //creatingNewRepository test
+
+    public void getDropdownCreate() {
+        gitHubPage.openDropdownCreate();
+    }
+
+    public void getDropdownItem() {
+        gitHubPage.selectDropdownItem();
+    }
+
+    public void repoCreation() {
+        creatingNewRepositoryPage.createRepository();
+    }
+
+    public String getFileTitle() {
+        return usersRepositoriesPage.getFileName();
+    }
 }
