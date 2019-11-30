@@ -30,4 +30,9 @@ public class NavigationHelper extends PageManager {
         gitHubPage.selectUsersRepository();
     }
 
+    // compare two list
+    public void goToHomePage(){
+        driver.get(homePageUrl);
+    }
+
 }

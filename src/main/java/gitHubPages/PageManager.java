@@ -10,6 +10,7 @@ public class PageManager {
     protected UsersRepositoriesPage usersRepositoriesPage;
     protected CreatingNewRepositoryPage creatingNewRepositoryPage;
     protected SearchResultPage searchResultPage;
+    protected HomePage homePage;
     protected WebDriver driver;
 
     public PageManager(WebDriver webDriver) {
@@ -20,6 +21,7 @@ public class PageManager {
         usersRepositoriesPage = initElements(new UsersRepositoriesPage(this));
         creatingNewRepositoryPage = initElements(new CreatingNewRepositoryPage(this));
         searchResultPage = initElements(new SearchResultPage(this));
+        homePage = initElements(new HomePage(this));
     }
 
     private <T extends Page> T initElements(T page) {

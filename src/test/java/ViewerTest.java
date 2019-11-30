@@ -90,4 +90,17 @@ public class ViewerTest extends TestBase {
         Assert.assertEquals(app.getRepositoryHelper().getFilePom(), expectedPomName);
     }
 
+    @Test
+    public void compareTwoSearchedList() throws Exception {
+        app.getNavigationHelper().goToHomePage();
+        app.getRepositoryHelper().searchKeyWord();
+        List<String> firstNamesFromList = app.getRepositoryHelper().getFirstNamesFromList();
+        app.getRepositoryHelper().applySortFilter();
+        Thread.sleep(5000);
+        List<String> secondNamesFromList = app.getRepositoryHelper().getSecondNamesFromList();
+        for (int i = 0; i < firstNamesFromList.size(); i++) {
+            new SoftAssert().assertNotEquals(firstNamesFromList.get(i), secondNamesFromList.get(i));
+        }
+    }
+
 }

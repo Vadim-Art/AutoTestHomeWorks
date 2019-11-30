@@ -86,5 +86,29 @@ public class RepositoryHelper extends PageManager {
         return usersRepositoriesPage.getPomFileName();
     }
 
+    // compare two list
+
+    public void searchKeyWord(){homePage.searchItem();}
+    public List<String> getFirstNamesFromList(){
+        List<String> firstList = new ArrayList<>();
+        for (WebElement item: searchResultPage.getFirstSearchedList()){
+            firstList.add(item.getText());
+        }
+        return firstList;
+    }
+
+    public void applySortFilter() {
+        searchResultPage.getSortDropDown();
+        searchResultPage.getDropDownItem();
+    }
+
+    public List<String> getSecondNamesFromList(){
+        List<String> secondList = new ArrayList<>();
+        for (WebElement item: searchResultPage.getSecondSearchedList()){
+            secondList.add(item.getText());
+        }
+        return secondList;
+    }
+
 
 }
