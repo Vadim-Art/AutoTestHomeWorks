@@ -10,7 +10,7 @@ public class PageManager {
     protected UsersRepositoriesPage usersRepositoriesPage;
     protected CreatingNewRepositoryPage creatingNewRepositoryPage;
     protected SearchResultPage searchResultPage;
-    private WebDriver driver;
+    protected WebDriver driver;
 
     public PageManager(WebDriver webDriver) {
         this.driver = webDriver;

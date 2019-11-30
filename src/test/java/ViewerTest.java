@@ -1,14 +1,15 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
+
+import java.util.List;
 
 public class ViewerTest extends TestBase {
 
     private String expectedName = "testautotest";
     private String expectedUrl = "https://github.com";
-
     private String expectedName1 = "The GitHub Blog";
     private String expectedUrl1 = "https://github.blog/";
-    private String url = System.getProperty("gitHub.login.page.url");
     private int expectedElementsNumber = 4;
     private int expectedFolderNumber = 1;
     private int expectedFilesNumber = 3;
@@ -22,68 +23,71 @@ public class ViewerTest extends TestBase {
     private String expectedUrlForUsersRepo = "https://github.com/Vadim-Art/AutoTestHomeWorks";
 
     @Test
-    public void userLoginWitPageObject() {
-        driver.get("https://github.com/login");
-        app.getUserHelper().LoginAs();
+    public void userLoginWithPageObject() {
+        app.getNavigationHelper().goToLoginForm();
+        app.getUserHelper().loginAs();
         app.getUserHelper().getDropdown();
         Assert.assertTrue(driver.getCurrentUrl().contains(expectedUrl));
         Assert.assertEquals(app.getUserHelper().getUserName(), expectedName);
     }
 
     @Test
-    public void userLoginTest() {
-        driver.get(url);
-        app.getUserHelper().LoginAs();
-        app.getUserHelper().getBlogLink();
+    public void goToBlogTest() {
+        app.getNavigationHelper().goToLoginForm();
+        app.getUserHelper().loginAs();
+        app.getNavigationHelper().getBlogLink();
 
         Assert.assertEquals(driver.getCurrentUrl(), expectedUrl1);
-        Assert.assertEquals(app.getUserHelper().getPageTitle(), expectedName1);
+        Assert.assertEquals(app.getRepositoryHelper().getPageTitle(), expectedName1);
     }
 
     @Test
     public void usersRepositoryCountFileTest() {
-        driver.get(url);
-        app.getUserHelper().LoginAs();
-        app.getUserHelper().getUsersRepository();
+        app.getNavigationHelper().goToLoginForm();
+        app.getUserHelper().loginAs();
+        app.getNavigationHelper().goToUsersRepository();
 
         Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForRepository);
-        Assert.assertEquals(app.getUserHelper().getFiles(), expectedElementsNumber);
+        Assert.assertEquals(app.getRepositoryHelper().getFiles(), expectedElementsNumber);
     }
 
     @Test
     public void usersRepositoryCountFoldersAndFilesTest() {
-        driver.get(url);
-        app.getUserHelper().LoginAs();
-        app.getUserHelper().getUsersRepository();
+        app.getNavigationHelper().goToLoginForm();
+        app.getUserHelper().loginAs();
+        app.getNavigationHelper().goToUsersRepository();
 
         Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForRepository);
-        Assert.assertEquals(app.getUserHelper().getFolder(), expectedFolderNumber);
-        Assert.assertEquals(app.getUserHelper().getFilesFromList(), expectedFilesNumber);
+        Assert.assertEquals(app.getRepositoryHelper().getFolder(), expectedFolderNumber);
+        Assert.assertEquals(app.getRepositoryHelper().getFilesFromList(), expectedFilesNumber);
     }
+
     @Test
     public void creatingNewRepositoryTest() {
-        driver.get(url);
-        app.getUserHelper().LoginAs();
-        app.getUserHelper().getDropdownCreate();
-        app.getUserHelper().getDropdownItem();
-        app.getUserHelper().repoCreation();
+        app.getNavigationHelper().goToLoginForm();
+        app.getUserHelper().loginAs();
+        app.getRepositoryHelper().getDropdownCreate();
+        app.getRepositoryHelper().getDropdownItem();
+        app.getRepositoryHelper().repoCreation();
 
         Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForNewRepo);
-        Assert.assertEquals(app.getUserHelper().getFiles(), expectedFilesNumberForNewRepo);
-        Assert.assertEquals(app.getUserHelper().getFileTitle(), expectedFileName);
+        Assert.assertEquals(app.getRepositoryHelper().getFiles(), expectedFilesNumberForNewRepo);
+        Assert.assertEquals(app.getRepositoryHelper().getFileTitle(), expectedFileName);
     }
+
     @Test
     public void searchRepositoryTest() {
-        driver.get(url);
-        app.getUserHelper().LoginAs();
-        app.getUserHelper().search();
-        app.getUserHelper().getFilter();
-        app.getUserHelper().getRepoName();
+        app.getNavigationHelper().goToLoginForm();
+        app.getUserHelper().loginAs();
+        app.getRepositoryHelper().searchRepo();
+        app.getRepositoryHelper().applyFilter();
+        app.getRepositoryHelper().getRepoName();
 
         Assert.assertEquals(driver.getCurrentUrl(), expectedUrlForUsersRepo);
-        Assert.assertEquals(app.getUserHelper().getFiles(), expectedFilesNumber);
-        Assert.assertEquals(app.getUserHelper().getFolderTitle(), expectedFolderName);
-        Assert.assertEquals(app.getUserHelper().getFileGitIgnore(), expectedIgnoreName);
-        Assert.assertEquals(app.getUserHelper().getFilePom(), expectedPomName);
+        Assert.assertEquals(app.getRepositoryHelper().getFiles(), expectedFilesNumber);
+        Assert.assertEquals(app.getRepositoryHelper().getFolderTitle(), expectedFolderName);
+        Assert.assertEquals(app.getRepositoryHelper().getFileGitIgnore(), expectedIgnoreName);
+        Assert.assertEquals(app.getRepositoryHelper().getFilePom(), expectedPomName);
     }
+
 }

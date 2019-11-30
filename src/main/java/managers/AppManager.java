@@ -1,5 +1,7 @@
 package managers;
 
+import helpers.NavigationHelper;
+import helpers.RepositoryHelper;
 import helpers.UserHelper;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -13,6 +15,8 @@ public class AppManager {
 
     private static WebDriver driver;
     private UserHelper userHelper;
+    private NavigationHelper navigationHelper;
+    private RepositoryHelper repositoryHelper;
 
     AppManager() {
         //File chromeDriver = new File(PropertyLoader.loadProperty("chrome.driver.path"));
@@ -26,6 +30,8 @@ public class AppManager {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(10, TimeUnit.SECONDS);
         userHelper = new UserHelper();
+        navigationHelper = new NavigationHelper();
+        repositoryHelper = new RepositoryHelper();
     }
 
     public static WebDriver getWebDriver() {
@@ -34,5 +40,12 @@ public class AppManager {
 
     public UserHelper getUserHelper() {
         return userHelper;
+    }
+
+    public NavigationHelper getNavigationHelper(){
+        return navigationHelper;
+    }
+    public RepositoryHelper getRepositoryHelper() {
+        return repositoryHelper;
     }
 }

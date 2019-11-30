@@ -23,13 +23,34 @@ public class CreatingNewRepositoryPage extends Page {
         super(pages);
     }
 
-    public void createRepository() {
+//    public void createRepository() {
+//        wait.until(ExpectedConditions.visibilityOf(createForm));
+//        repositoryNameInput.sendKeys(repositoryName);
+//        repositoryDescriptionInput.sendKeys(repositoryDescription);
+//        checkbox.click();
+//        createButton.click();
+//    }
+
+    public void enterRepoName() {
         wait.until(ExpectedConditions.visibilityOf(createForm));
         repositoryNameInput.sendKeys(repositoryName);
+    }
+
+    public void enterRepoDescription() {
+        wait.until(ExpectedConditions.visibilityOf(createForm));
         repositoryDescriptionInput.sendKeys(repositoryDescription);
+    }
+
+    public void addCheckState(){
+        wait.until(ExpectedConditions.visibilityOf(createForm));
         checkbox.click();
+    }
+
+    public void submitRepoCreating(){
+        wait.until(ExpectedConditions.visibilityOf(createForm));
         createButton.click();
     }
+
 
 
 }

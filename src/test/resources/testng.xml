@@ -5,12 +5,13 @@
         <classes>
             <class name="ViewerTest">
                 <methods>
-                    <include name = "userLoginWitPageObject/"/>
-                    <exclude name = "userLoginTest"/>
+                    <exclude name = "userLoginWithPageObject/"/>
+                    <exclude name = "goToBlogTest"/>
                     <exclude name = "usersRepositoryCountFileTest"/>
                     <exclude name ="usersRepositoryCountFoldersAndFilesTest"/>
                     <exclude name ="creatingNewRepository"/>
                     <exclude name ="searchRepository"/>
+                    <include name = "compareTwoSearchedList"/>
                 </methods>
             </class>
         </classes>
