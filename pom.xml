@@ -4,15 +4,15 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.test</groupId>
-    <artifactId>test</artifactId>
+    <groupId>Lektorium</groupId>
+    <artifactId>Lektorium</artifactId>
     <version>1.0-SNAPSHOT</version>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <browser.name>chrome</browser.name>
         <chrome.driver.path>lib/drivers/chrome/chromedriver.exe</chrome.driver.path>
         <gitHub.login.page.url>https://github.com/login</gitHub.login.page.url>
+        <gitHub.home.page.url>https://github.com</gitHub.home.page.url>
         <user.name>testautotest12345@gmail.com</user.name>
         <user.password>qwerty12345auto</user.password>
     </properties>
@@ -49,6 +49,7 @@
                         <chrome.driver.path>${chrome.driver.path}</chrome.driver.path>
                         <browser.name>${browser.name}</browser.name>
                         <gitHub.login.page.url>${gitHub.login.page.url}</gitHub.login.page.url>
+                        <gitHub.home.page.url>${gitHub.home.page.url}</gitHub.home.page.url>
                         <user.name>${user.name}</user.name>
                         <user.password>${user.password}</user.password>
                     </systemPropertyVariables>
