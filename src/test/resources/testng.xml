@@ -11,7 +11,8 @@
                     <exclude name ="usersRepositoryCountFoldersAndFilesTest"/>
                     <exclude name ="creatingNewRepository"/>
                     <exclude name ="searchRepository"/>
-                    <include name = "compareTwoSearchedList"/>
+                    <exclude name = "compareTwoSearchedList"/>
+                    <include name = "calculateAllStars"/>
                 </methods>
             </class>
         </classes>

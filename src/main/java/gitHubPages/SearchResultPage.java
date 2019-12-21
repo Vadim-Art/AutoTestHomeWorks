@@ -64,5 +64,15 @@ public class SearchResultPage extends Page {
         return secondSearchedList;
     }
 
+    // counting stars
+    @FindBy (xpath = "//div//a[contains(@class,'muted-link')and (contains(@href,'star'))]")
+    private List<WebElement> starsList;
+
+    public List<WebElement> getStarsCountList() {
+        wait.until(ExpectedConditions.visibilityOf(starsList.get(0)));
+        return starsList;
+
+    }
+
 
 }

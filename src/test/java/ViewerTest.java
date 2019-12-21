@@ -103,4 +103,13 @@ public class ViewerTest extends TestBase {
         }
     }
 
+    @Test
+    public void calculateAllStars() {
+        app.getNavigationHelper().goToHomePage();
+        app.getRepositoryHelper().searchKeyWord();
+        System.out.println("List of the stars is: " + app.getRepositoryHelper().getStarsList());
+        System.out.println("Total sum of the stars is: " + app.getRepositoryHelper().countValueOfStars());
+        Assert.assertTrue(app.getRepositoryHelper().countValueOfStars() > 0);
+    }
+
 }

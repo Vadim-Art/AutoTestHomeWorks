@@ -88,10 +88,13 @@ public class RepositoryHelper extends PageManager {
 
     // compare two list
 
-    public void searchKeyWord(){homePage.searchItem();}
-    public List<String> getFirstNamesFromList(){
+    public void searchKeyWord() {
+        homePage.searchItem();
+    }
+
+    public List<String> getFirstNamesFromList() {
         List<String> firstList = new ArrayList<>();
-        for (WebElement item: searchResultPage.getFirstSearchedList()){
+        for (WebElement item : searchResultPage.getFirstSearchedList()) {
             firstList.add(item.getText());
         }
         return firstList;
@@ -102,13 +105,39 @@ public class RepositoryHelper extends PageManager {
         searchResultPage.getDropDownItem();
     }
 
-    public List<String> getSecondNamesFromList(){
+    public List<String> getSecondNamesFromList() {
         List<String> secondList = new ArrayList<>();
-        for (WebElement item: searchResultPage.getSecondSearchedList()){
+        for (WebElement item : searchResultPage.getSecondSearchedList()) {
             secondList.add(item.getText());
         }
         return secondList;
     }
 
+    //countStars
+    public List<String> getStarsList() {
+        List<String> starsList = new ArrayList<>();
+        for (WebElement item : searchResultPage.getStarsCountList()) {
+            starsList.add(item.getText());
+        }
+        return starsList;
+    }
 
+    public int countValueOfStars() {
+        int sum = 0;
+        for (WebElement item : searchResultPage.getStarsCountList()) {
+            String str = item.getText();
+            if (str.contains("k")) {
+                str = item.getText().replace("k", "");
+                if (str.contains(".")) {
+                    str = str.replace(".", "");
+                    sum += Integer.parseInt(str) * 100;
+                } else {
+                    sum += Integer.parseInt(str) * 1000;
+                }
+            } else {
+                sum += Integer.parseInt(str);
+            }
+        }
+        return sum;
+    }
 }
