@@ -17,12 +17,13 @@ public class HomePage extends Page {
     private WebElement searchButton;
 
 
-    public void searchItem() {
+    public String searchItem (String languageName) {
         wait.until(ExpectedConditions.visibilityOf(searchInput));
         searchInput.clear();
-        searchInput.sendKeys(searchKeyWord);
+        searchInput.sendKeys(languageName);
         wait.until(ExpectedConditions.visibilityOf(searchButton));
         searchButton.click();
+        return languageName;
     }
 
 }

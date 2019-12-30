@@ -1,5 +1,6 @@
 package gitHubPages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -62,6 +63,22 @@ public class SearchResultPage extends Page {
     public List<WebElement> getSecondSearchedList(){
         wait.until(ExpectedConditions.visibilityOf(secondSearchedList.get(0)));
         return secondSearchedList;
+    }
+
+    // counting stars
+    @FindBy (xpath = "//div//a[contains(@class,'muted-link')and (contains(@href,'star'))]")
+    private List<WebElement> starsList;
+
+    public List<WebElement> getStarsCountList() {
+        wait.until(ExpectedConditions.visibilityOf(starsList.get(0)));
+        return starsList;
+
+    }
+
+    // concat strings
+    public int getLanguageValue(String language){
+       return Integer.parseInt(driver.findElement(By.xpath("//a[contains(.,'"+ language +"' )]/span")).getText()
+               .replaceAll(",",""));
     }
 
 

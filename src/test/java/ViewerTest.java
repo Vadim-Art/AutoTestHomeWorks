@@ -93,7 +93,7 @@ public class ViewerTest extends TestBase {
     @Test
     public void compareTwoSearchedList() throws Exception {
         app.getNavigationHelper().goToHomePage();
-        app.getRepositoryHelper().searchKeyWord();
+        app.getRepositoryHelper().searchKeyWord("Java");
         List<String> firstNamesFromList = app.getRepositoryHelper().getFirstNamesFromList();
         app.getRepositoryHelper().applySortFilter();
         Thread.sleep(5000);
@@ -103,4 +103,21 @@ public class ViewerTest extends TestBase {
         }
     }
 
+    @Test
+    public void calculateAllStars() {
+        app.getNavigationHelper().goToHomePage();
+        app.getRepositoryHelper().searchKeyWord("Java");
+        System.out.println("List of the stars is: " + app.getRepositoryHelper().getStarsList());
+        System.out.println("Total sum of the stars is: " + app.getRepositoryHelper().countValueOfStars());
+        Assert.assertTrue(app.getRepositoryHelper().countValueOfStars() > 0);
+    }
+
+    @Test
+    public void lang(){
+        app.getNavigationHelper().goToHomePage();
+        app.getRepositoryHelper().searchKeyWord("Java");
+        int languageValue = app.getRepositoryHelper().getLangRepoValue("HTML");
+        System.out.println("Searched language count is: " + languageValue);
+        Assert.assertTrue(languageValue > 0);
+    }
 }
