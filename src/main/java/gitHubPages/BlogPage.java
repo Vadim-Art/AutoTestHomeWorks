@@ -14,7 +14,7 @@ public class BlogPage extends Page {
     }
 
     public String getPageName() {
-        wait.until(ExpectedConditions.visibilityOf(targetPageName));
+       wait.until(ExpectedConditions.visibilityOf(targetPageName));
         return targetPageName.getText();
 
     }

@@ -1,5 +1,6 @@
 package gitHubPages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -16,13 +17,14 @@ public class HomePage extends Page {
     @FindBy(xpath = "(id('jump-to-results')/li)[2]")
     private WebElement searchButton;
 
-
-    public void searchItem() {
+    @Step("Enter the language name:{languageName} and click the search button.")
+    public String searchItem(String languageName) {
         wait.until(ExpectedConditions.visibilityOf(searchInput));
         searchInput.clear();
-        searchInput.sendKeys(searchKeyWord);
+        searchInput.sendKeys(languageName);
         wait.until(ExpectedConditions.visibilityOf(searchButton));
         searchButton.click();
+        return languageName;
     }
 
 }

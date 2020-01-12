@@ -1,6 +1,7 @@
 package helpers;
 
 import gitHubPages.PageManager;
+import io.qameta.allure.Step;
 import managers.AppManager;
 
 public class NavigationHelper extends PageManager {
@@ -31,6 +32,7 @@ public class NavigationHelper extends PageManager {
     }
 
     // compare two list
+    @Step("Go to GitHub main page")
     public void goToHomePage(){
         driver.get(homePageUrl);
     }
