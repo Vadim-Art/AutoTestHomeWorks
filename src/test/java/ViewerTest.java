@@ -1,9 +1,11 @@
+import io.qameta.allure.Description;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.util.List;
-
+@Listeners(AllureTestListener.class)
 public class ViewerTest extends TestBase {
 
     private String expectedName = "testautotest";
@@ -93,7 +95,7 @@ public class ViewerTest extends TestBase {
     @Test
     public void compareTwoSearchedList() throws Exception {
         app.getNavigationHelper().goToHomePage();
-        app.getRepositoryHelper().searchKeyWord();
+        app.getRepositoryHelper().searchKeyWord("Java");
         List<String> firstNamesFromList = app.getRepositoryHelper().getFirstNamesFromList();
         app.getRepositoryHelper().applySortFilter();
         Thread.sleep(5000);
@@ -103,4 +105,25 @@ public class ViewerTest extends TestBase {
         }
     }
 
+    @Test
+    public void calculateAllStars() {
+        app.getNavigationHelper().goToHomePage();
+        app.getRepositoryHelper().searchKeyWord("Java");
+        System.out.println("List of the stars is: " + app.getRepositoryHelper().getStarsList());
+        System.out.println("Total sum of the stars is: " + app.getRepositoryHelper().countValueOfStars());
+        Assert.assertTrue(app.getRepositoryHelper().countValueOfStars() > 0);
+    }
+
+    @Test
+    @Description("Clearing the search field." +
+            "Entering language name into the search field. Clicking the search button." +
+            " Getting language name from the list with the number of posts using Xpath," +
+            "replacing comma and converting it to INT format")
+    public void lang(){
+        app.getNavigationHelper().goToHomePage();
+        app.getRepositoryHelper().searchKeyWord("Java");
+        int languageValue = app.getRepositoryHelper().getLangRepoValue("HTML");
+        System.out.println("Searched language count is: " + languageValue);
+        Assert.assertTrue(languageValue < 0);
+    }
 }
